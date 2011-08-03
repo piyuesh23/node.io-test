@@ -1,0 +1,18 @@
+{
+  "author": "piyuesh and saket",
+  "name": "dict",
+  "description": "dictionary of hindi words in english",
+  "version": "0.0.1",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": ">= 0.4.8"
+  },
+  "dependencies": {
+    "node.io" : "0.3.3",
+    "jsdom" : ">= 0.2.0",
+    "jquery" : ">= 1.5.1"
+  },
+  "devDependencies": {}
+}
