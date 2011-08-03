@@ -1,16 +1,20 @@
-var nodeio = require('node.io');
-var methods = {
-    input: false,   
-    jsdom: true,
-    run: function() {
+  var nodeio  = require('node.io'),
+      options = {
+        timeout : 1000,
+        max     : 30, 
+        jsdom   : true, 
+        retries : 5 
+      };
+
+  exports.job = new nodeio.Job(options, {
+    input : false,
+    run   : function () {
         this.getHtml('http://en.wikipedia.org/wiki/List_of_cities_and_towns_in_India', function(err, $) {
             //Handle any request / parsing errors
             if (err) this.exit(err);
             
-            $('table.sortable tr').each(function(){
-              $(this).find('td').each(function(){
-                console.log($(this));
-              })
+            $('table.sortable tr td a').each(function(){
+              console.log($(this).text())
             });
 /*
             var places = [], states=[], population = [], output = [];
@@ -41,6 +45,4 @@ var methods = {
             this.emit('output');
         });
     }
-}
-
-exports.job = new nodeio.Job({timeout:500}, methods);
+  });
